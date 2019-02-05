@@ -1,0 +1,20 @@
+{
+  "name": "Courses",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@babel/register": "^7.0.0"
+  }
+}
