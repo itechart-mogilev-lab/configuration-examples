@@ -8,6 +8,9 @@ let order = {
   lines: [{ product: 234 }, { product: 345 }]
 };
 
+// let id = order.id;
+// let customerName = order.customer.name;
+
 let {
   id,
   customer: { name: customerName }
@@ -21,22 +24,27 @@ console.log(customerName);
 console.log(product);
 
 function SomeFunctionThatExpectsObjectWithID({ id }) {}
+function SomeFunctionThatExpectsObjectWithID(order) {
+  //
+  //
 
-
-
+  let id = order.id;
+}
 
 // Spread and Rest operators
 let a = [2, 3, 4];
 let b = [1, ...a];
 
 let orderCopy = { ...order, id: 2 };
+// let anotherCopy = Object.assign({}, order, {id: 2})
+
+// let deepCopy = { ...order, customer: { ...order.customer }, lines: [...order.lines] };
+let deepCopy = JSON.parse(JSON.stringify(order))
+
+
+
+
 let { lines, ...restOrderProps } = order;
-
-
-
-
-
-
 
 
 

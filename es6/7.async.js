@@ -1,6 +1,8 @@
 const someAsyncAction = () =>
   new Promise(resolve => {
-    setTimeout(() => resolve({ id: 1, name: "R" }), 1500);
+    setTimeout(() => {
+      resolve({ id: 1, name: "R" });
+    }, 1500);
   });
 
 const failingAsyncAction = () =>
@@ -9,8 +11,9 @@ const failingAsyncAction = () =>
   });
 
 function OldStyle() {
-  someAsyncAction().then(response => {
+  return someAsyncAction().then(response => {
     console.log(response);
+    return someAsyncAction();
   });
 }
 
@@ -19,20 +22,18 @@ async function CoolStyle() {
   console.log(response);
 }
 
-// OldStyle();
+// OldStyle().then((result) => console.log('all done', result));
 // CoolStyle();
 
 function OldStyleErrorHandling() {
-  someAsyncAction().then(
+  return someAsyncAction().then(
     response => {
-      failingAsyncAction().then(anotherResponse => {
+      return failingAsyncAction().then(anotherResponse => {
         console.log("process data");
-      });
-    },
-    error => {
+      })
+    }).catch(error => {
       console.log("this error processing will never happen");
-    }
-  );
+    });
 }
 
 async function ErrorHandling() {
@@ -45,8 +46,14 @@ async function ErrorHandling() {
   }
 }
 
-// OldStyleErrorHandling();
+// OldStyleErrorHandling().then();
 // ErrorHandling();
+
+async function WrongCode() {
+  let result1 =  await someAsyncAction();
+  let result2 = await someAsyncAction();
+}
+
 
 async function WaitForMultiplePromises() {
   let operation1 = someAsyncAction();
@@ -55,15 +62,15 @@ async function WaitForMultiplePromises() {
   let [result1, result2] = await Promise.all([operation1, operation2]);
 }
 
-let timeoutToken = Symbol.for("timeout");
+let timeoutToken = "timeout";
 const timeoutFn = sec =>
   new Promise(resolve => setTimeout(resolve, sec * 1000, timeoutToken));
 
 async function OperationWithTimeout() {
-  let result = await Promise.race([someAsyncAction(), timeoutFn(0.1)]);
-  if (result == Symbol.for("timeout")) {
+  let result = await Promise.race([someAsyncAction(), timeoutFn(2)]);
+  if (result == "timeout") {
     console.log("timeout");
-  }
+  } 
 }
 
 OperationWithTimeout();

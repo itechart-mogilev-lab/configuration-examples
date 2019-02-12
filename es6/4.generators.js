@@ -26,6 +26,17 @@ console.log(iterator.next());
 console.log(iterator.next());
 
 
+// let gen = SimpleFibonacciGenerator(4);
+
+// while(true) {
+//   let iteration = gen.next();
+//   if (iteration.done) break;
+
+
+//   let value = iteration.value;
+// }
+
+
 
 
 // Generator returns iterable object
@@ -59,6 +70,7 @@ function* NestedGenerator() {
   yield "a";
   yield "b";
   yield* SimpleFibonacciGenerator(4);
+  yield "c";
 }
 console.log("===NESTED".padEnd(15, "="));
 for (let item of NestedGenerator()) {

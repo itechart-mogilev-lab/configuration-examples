@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "nodemon --inspect --delay 1000ms ./index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,8 @@
     "@babel/core": "^7.2.2",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.1",
-    "@babel/register": "^7.0.0"
+    "@babel/register": "^7.0.0",
+    "nodemon": "^1.18.10"
   },
   "dependencies": {
     "express": "^4.16.4"

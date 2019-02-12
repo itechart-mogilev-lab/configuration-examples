@@ -3,6 +3,9 @@ select *
 from Table`;
 
 
+let multi = 'select\n' + 
+'from Table' + '\n'
+
 
 
 
@@ -29,6 +32,5 @@ function SpecialFormatterFunction(stringSegments, ...args) {
 }
 
 let table = 'Users'
-SpecialFormatterFunction`select * from ${table} where ${() => data.id == 1}
-`;
+SpecialFormatterFunction`select * from ${table} where ${() => data.id == 1}`;
 

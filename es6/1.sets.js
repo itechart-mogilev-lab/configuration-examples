@@ -1,10 +1,26 @@
 let set = new Set([1, 4, 5, 2, 3]);
 let map = new Map([[1, "a"], [4, "d"], [5, "e"], [2, "b"], [3, "c"]]);
 
+
+// let setObj = {
+//   5: true
+// }
+
+// set.size;
+// Object.keys(setObj).length;
+
+
+
+// if (setObj[5]) {
+
+// }
+
+
 let weakSet = new WeakSet();
 weakSet.add({ f: 1 });
 
 let weakMap = new WeakMap();
+// weakMap.set(1, { f: 2 });
 weakMap.set({}, { f: 2 });
 
 try {

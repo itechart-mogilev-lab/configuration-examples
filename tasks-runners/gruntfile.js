@@ -1,4 +1,8 @@
 module.exports = function(grunt) {
+
+
+
+
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
     jshint: {
@@ -18,6 +22,7 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
+      tasks: [],
       options: {
         // the banner is inserted at the top of the output
         banner:
@@ -37,6 +42,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-concat");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
 
-  grunt.registerTask("default", ["jshint"]);
+  grunt.registerTask("default", ["jshint", "concat"]);
+  grunt.registerTask("prod", ["jshint", "uglify", "concat"]);
 };
